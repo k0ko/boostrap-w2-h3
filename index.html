@@ -12,19 +12,18 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossodrigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 
   <title>Ignite Bootstrap Homework</title>
 </head>
-<body data-spy="scroll" data-target="#navbar-example">
+
+<body>
   <main>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -57,7 +56,7 @@
           <p class="lead">Legendary comedian and actor Eugene Levy, known for his characters in 'American Pie', 'Waiting
             for Guffman', 'Best in Show', and 'A Mighty Wind', is finishing up his final season of "Schitt's Creek". "No
             Small Parts" takes a look at his rise to fame.</p>
-          <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">View Movie</button>
+          <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">View Modal</button>
         </div>
       </div>
     </div>
@@ -178,8 +177,7 @@
                 clandestine
                 empire to his reluctant son. </p>
               <div class="card-buttons">
-                <a href="#" class="btn btn-primary">View Popover</a>
-                <a href="#" class="btn btn-dark">View Modal</a>
+                <a href="#" class="btn btn-primary" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">View Popover</a>
               </div>
             </div>
             <div class="card-footer">
@@ -316,10 +314,19 @@
   </div>
   <script>
     $(document).ready(function () {
-      $('body').scrollspy({ target: '#navbar-example' })
+      $('.nav-link').click(function () {
+          var sectionTo = $(this).attr('href');
+          $('html, body').animate({
+              scrollTop: $(sectionTo).offset().top
+          }, 1500);
+      });
       $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
       });
+      $('.card .btn').click(function (event){
+        event.preventDefault();
+      });
+      $('[data-toggle="popover"]').popover(); 
     });
   </script>
 </body>
